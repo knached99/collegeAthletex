@@ -771,7 +771,7 @@ In advance of gameday, please call the Athletic Ticket Office, M-F, 9:00 a.m.-4:
         <form method="POST" action="#">
           <div class="form-row justify-content-center">
             <div class="col-auto">
-              <a href="../Login/signup" class="btn btn-danger btn-lg">Become a Member</a>
+              <a href="../Signup/cust_signup" class="btn btn-danger btn-lg">Become a Member</a>
             </div>
           </div>
         </form>
@@ -796,8 +796,8 @@ In advance of gameday, please call the Athletic Ticket Office, M-F, 9:00 a.m.-4:
                 <h6 class="card-price text-center">$150</h6>
                 <hr>
                 <ul class="fa-ul">
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Shit Seating</li>
-                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Shit Parking</li>
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Basic Seating</li>
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Basic Parking</li>
                   <li><span class="fa-li"><i class="fa fa-check"></i></span>$5 additional for any food or beverage item</li>
                   <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Meet and greet athletes</li>
                   <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Athlete Autograph</li>
@@ -806,7 +806,7 @@ In advance of gameday, please call the Athletic Ticket Office, M-F, 9:00 a.m.-4:
                 <hr>
                 <div class="text-center">
                   <!--<button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Buy Now</button>-->
-                  <a href="../Login/signin" class="btn">Buy Now</a>
+                  <a href="../Signup/cust_signup" class="btn">Buy Now</a>
                 </div>
               </div>
             </div>
@@ -828,7 +828,7 @@ In advance of gameday, please call the Athletic Ticket Office, M-F, 9:00 a.m.-4:
                 <hr>
                 <div class="text-center">
               <!--    <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="pro-access">Buy Now</button>-->
-              <a href="../Login/signin" class="btn">Buy Now</a>
+              <a href="../Signup/cust_signup" class="btn">Buy Now</a>
 
                 </div>
               </div>
@@ -853,7 +853,7 @@ In advance of gameday, please call the Athletic Ticket Office, M-F, 9:00 a.m.-4:
                 <hr>
                 <div class="text-center">
                 <!--  <button type="button" class="btn" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="premium-access">Buy Now</button> -->
-                <a href="../Login/signin" class="btn">Buy Now</a>
+                <a href="../Signup/cust_signup" class="btn">Buy Now</a>
 
                 </div>
 

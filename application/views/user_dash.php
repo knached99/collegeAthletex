@@ -73,7 +73,6 @@
                   <h5 class="card-title font-weight-bold">My Profile</h5>
 
                   <p class="card-text font-weight-bold">
-                  <?php echo "{$user_data->fName}"?>
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">

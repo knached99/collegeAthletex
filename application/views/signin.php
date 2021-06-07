@@ -70,6 +70,12 @@ echo $err_msg;
 else if(isset($error)){
 echo $error;
 }
+else if(isset($unverified)){
+  echo $unverified;
+}
+else if(isset($not_exist)){
+  echo $not_exist;
+}
 ?>
 			<a href="forgot_pass" class="forgot-pass">Forgot Password?</a><br>
                 </div>

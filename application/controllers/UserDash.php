@@ -14,8 +14,8 @@ class UserDash extends CI_Controller{
   		 $this->load->model('Insert');
        $sess_email = $this->session->set_userdata('email');
        $results = $this->Insert->get_user($sess_email);
-       $this->data['user_data'] = $results[0];
-       $this->load->view('user_dash', $this->data);
+    //   $this->data['user_data'] = $results[0];
+       $this->load->view('user_dash');
 
 
   	 }

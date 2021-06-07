@@ -101,7 +101,7 @@
 											<div class="col-md-12 my-4">
 												<div class="form-group">
 						            	<select name="ticket" class="form-control">
-                            <option value="select ticket"<?php echo set_select('ticket','select ticket', FALSE);?>>Select Ticket</option>
+                            <option value="select seasonal package"<?php echo set_select('ticket','select seasonal package', FALSE);?>>Select a seasonal package</option>
                             <option value="Standard Seasonal Access - $150" <?php echo set_select('ticket', 'Standard Seasonal Access - $150');?>>Standard Seasonal Access - $150</option>
                               <option value="Pro Seasonal Access - $250" <?php echo set_select('ticket', 'Pro Seasonal Access - $250');?>>Pro Seasonal Access - $250</option>
                                 <option value="Premium Seasonal Access - $350" <?php echo set_select('ticket', 'Premium Seasonal Access - $350');?>>Premium Seasonal Access - $350</option>

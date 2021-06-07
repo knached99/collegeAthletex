@@ -44,15 +44,13 @@ class Insert extends CI_MODEL{
   }
   // Get password reset status
   public function get_admin_status($email){
-    $status=1;
     $this->db->select('*');
     $this->db->from('admins');
     $this->db->where('email', $email);
-    $this->db->where('reset_status', $status);
     $query = $this->db->get();
     if($query->num_rows() > 0){
       foreach($query->result_array() as $row){
-        if($row['reset_status']= $status){
+        if($row['reset_status']==1){
           return FALSE;
         }
         else{
@@ -87,7 +85,7 @@ class Insert extends CI_MODEL{
         if($row['verify_status'] == $status){
           return FALSE;
         }
-        else if($row['verify_status'] ==1){
+        else if($row['verify_status']==1){
           return TRUE;
         }
       }
@@ -254,6 +252,11 @@ class Insert extends CI_MODEL{
     if($count > 0){
       foreach($result as $row){
         $upass = $row['pwd'];
+        $verify_status = $row['verify_status'];
+        if($verify_status ==0){
+          return 0;
+        }
+        else if($verify_status == 1){
         if(!password_verify($pass, $upass)){
           return FALSE;
         }
@@ -261,11 +264,12 @@ class Insert extends CI_MODEL{
           return TRUE;
         }
       }
+    }
       return $result->result();
     }
-    //else{
-      //return FALSE;
-  //  }
+  else{
+      return 1;
+    }
   }
 
   public function get_user($email){

@@ -14,8 +14,8 @@
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="row">
       <div class="col">
-        <h2 class="text-center text-small font-weight-bold" style="color: #FF6219;">You are being logged out</h2>
-    <img src="https://cdn.dribbble.com/users/216925/screenshots/2044807/bolt.gif" class="text-center">
+        <h2 class="text-center text-small font-weight-bold text-primary">You are being logged out</h2>
+    <img src="https://israelinstitute.nz/wp-content/uploads/2018/01/loader.gif" class="text-center">
     </div>
   </div>
 </div>

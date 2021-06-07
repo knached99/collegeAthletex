@@ -31,7 +31,9 @@ class Admin extends CI_Controller{
       echo 'Could not acknowledge user';
     }
   }
-
+  public function admin_profile(){
+    $this->load->view('admin_profile');
+  }
   public function edit_user($user_id){
 		$this->load->model('Insert');
 		$results = $this->Insert->get_customer($user_id);

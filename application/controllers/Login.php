@@ -18,7 +18,16 @@ class Login extends CI_Controller {
       $email = $this->input->post('email');
       $pass = $this->input->post('pwd');
       $results = $this->Insert->validate($email, $pass);
-      if($results == FALSE){
+      if($results == 0){
+        $data['unverified']='<p class="alert alert-warning font-weight-bold">Your account has not been verified yet. Please check your email to verify your account</p>';
+        $this->load->view('signin', $data);
+      }
+      else if($results == 1){
+        $data['not_exist']='<p class="alert alert-warning font-weight-bold">That account does not exist. You must create a new account</p>';
+        $this->load->view('signin', $data);
+
+      }
+      else if($results == FALSE){
         $data['error']='<p class="alert alert-danger font-weight-bold">username or password is incorrect <i class="fa fa-exclamation-circle fa-lg"></i></p>';
         $this->load->view('signin', $data);
       }

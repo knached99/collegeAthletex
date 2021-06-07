@@ -22,13 +22,20 @@ class Admin_Login extends CI_Controller{
      else {
        // Add an array of the users's session data
        $this->load->library('session');
-       $sess_data = array('username'=>$user);
-       $this->session->set_userdata($sess_data);
-       $this->load->view('redirect_success');
+       $sess_data = array(
+         'username'=>$user
+       );
+       $sess_array = $this->session->set_userdata($sess_data);
+       if(isset($sess_array)){
+        echo 'Unable to log you in, something went wrong';
+      }
+      else{
+        $this->load->view('redirect_success');
       }
 
    }
   }
+}
   public function reset_pass($email, $reset_token){
     $this->load->model('Insert');
     $data['reset_status']=$this->Insert->get_admin_status($email);
@@ -159,18 +166,23 @@ class Admin_Login extends CI_Controller{
         $this->load->library('encryption');
         $reset_token = bin2hex($this->encryption->create_key(16));
         // Get a hex-encoded representation of the key:
-        require_once(APPPATH.'config/email.php');
+        //require_once(APPPATH.'config/email.php');
         //APPPATH is a built in codeigniter constant
         //which gets the current file path
-        if($this-> __email_admin($email, $reset_token)){
+        if($this-> __email_admin($email, $reset_token)==TRUE){
           if($insert_auth = $this->Insert->gen_auth($reset_token, $email) == FALSE){
             echo 'Unable to update generate reset token';
           }
           else{
-            echo 'We have sent a password reset email to '.$email;
+            echo '
+            <head><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></head>
+            We have sent a password reset email to '.$email;
 
           }
 
+        }
+        else if($this->__email_admin($email, $reset_token)==FALSE){
+          echo $this->email->print_debugger();
         }
       }
     }
@@ -261,16 +273,27 @@ class Admin_Login extends CI_Controller{
 		';
     // Password reset email
     $this->load->library('email');
-    $this->email->set_header('MIME-Version', '1.0; charset=utf-8');
-    $this->email->set_header('Content-type', 'text/html');
+    $config['useragent']='CodeIgniter';
+    $config['protocol']='smtp';
+    $config['smtp_host']='smtp.gmail.com';
+    $config['smtp_user']='nhicvoting@gmail.com';
+    $config['smtp_pass']='ClubPenguin99!';
+    $config['smtp_port']='465';
+    $config['newline']="\r\n";
+    $config['smtp_timeout']='5';
+    $config['smtp_crypto']='ssl';
+    $config['wordwrap']=TRUE;
+    $config['mailtype']='html';
+    $config['charset']='iso-8859-1';
+    $this->email->initialize($config);
     $this->email->from('nhicvoting@gmail.com', 'Admin Password Reset');
     $this->email->to($email, 'Do not reply');
     $this->email->subject('Password reset request');
     $this->email->message($body);
 
     if(!$this->email->send()){
-      show_error($this->email->print_debugger());
-    //return FALSE;
+    return FALSE;
+    return $this->email->print_debugger();
 
     }
 		else{

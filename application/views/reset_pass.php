@@ -28,10 +28,10 @@
 </div>
     ';
   }
-  else if(isset($reset_token) && isset($email) && $reset_status == FALSE){
+  if( isset($reset_token) && isset($email) && $reset_status == FALSE){
     echo '<div class="container bg-white shadow-lg p-3 mb-5 mt-5 bg-white rounded">
     <p class="font-weight-bold text-center">Your password has already been reset.
-  <br>If you have already forgotton your new password, <a href="../../forgot_pass" class="font-weight-bold text-primary">click here</a> to submit a new password reset request</p>  
+  <br>If you have already forgotton your new password, <a href="../../forgot_pass" class="font-weight-bold text-primary">click here</a> to submit a new password reset request</p>
     </div>';
   }
 

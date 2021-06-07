@@ -15,8 +15,15 @@
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="row">
       <div class="col">
-        <h2 class="text-center text-success text-small font-weight-bold">Redirecting to your dashboard. Hang tight!</h2>
-    <img src="https://i.pinimg.com/originals/fa/87/77/fa87774590186b287a5338d7c87afc0c.gif" class="text-center">
+        <?php
+        if(isset($sess_err)){
+          echo '<h2 class="text-center text-success text-small font-weight-bold">'.$sess_err.'</h2>';
+        }
+        else{
+          echo '<h2 class="text-center text-small font-weight-bold" style="color: #6c42f5">Redirecting to your dashboard, <br>hang tight!</h2>';
+        }
+        ?>
+    <img src="http://aaravwebsolutions.com/images/loader.gif" class="text-center">
     </div>
   </div>
 </div>

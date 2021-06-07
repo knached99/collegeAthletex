@@ -69,8 +69,15 @@ switch($currTime){
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?php echo base_url();?>adminDash/assets/css/argon.css?v=1.2.0" type="text/css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/autofill/2.3.7/css/autoFill.bootstrap4.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.bootstrap4.min.css">
+   <!-- Responsivness for datatables-->
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.8/css/responsive.dataTables.min.css">
+   <!-- Scroller -->
+   <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.4/css/scroller.dataTables.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.0.1/css/searchBuilder.dataTables.min.css">
 </head>
 
 <body>
@@ -97,7 +104,7 @@ switch($currTime){
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="examples/profile.html">
+              <a class="nav-link" href="admin_profile">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
@@ -115,14 +122,6 @@ switch($currTime){
           <!-- Heading -->
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
-
-            <li class="nav-item">
-              <a class="nav-link" href="signout" target="_blank">
-                <i class="fa fa-sign-out-alt fa-lg"></i>
-                <span class="nav-link-text">Logout</span>
-              </a>
-            </li>
-
           </ul>
         </div>
       </div>
@@ -297,10 +296,10 @@ switch($currTime){
             <div class="col-lg-6 col-7">
               <h6 class="h2 text-white d-inline-block mb-0"><?php echo $displayMessage;?></h6>
             </div>
-            <div class="col-lg-6 col-5 text-right">
+            <!--<div class="col-lg-6 col-5 text-right">
               <a href="#" class="btn btn-sm btn-neutral">New</a>
               <a href="#" class="btn btn-sm btn-neutral">Filters</a>
-            </div>
+            </div>-->
           </div>
           <!-- Card stats -->
           <div class="row">
@@ -355,7 +354,7 @@ switch($currTime){
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                      <span class="h2 font-weight-bold mb-0">0</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -364,8 +363,7 @@ switch($currTime){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
                   </p>
                 </div>
               </div>
@@ -377,7 +375,7 @@ switch($currTime){
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <span class="h2 font-weight-bold mb-0">0%</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -386,8 +384,7 @@ switch($currTime){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
                   </p>
                 </div>
               </div>
@@ -427,10 +424,11 @@ switch($currTime){
             </div>
             <div class="card-body">
               <!-- Chart -->
-              <div class="chart">
+              <!--<div class="chart">
                 <!-- Chart wrapper -->
-                <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
-              </div>
+            <!--    <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
+            </div>-->
+            <h2 class="text-danger">No Data Available</h2>
             </div>
           </div>
         </div>
@@ -446,9 +444,10 @@ switch($currTime){
             </div>
             <div class="card-body">
               <!-- Chart -->
-              <div class="chart">
+              <!--<div class="chart">
                 <canvas id="chart-bars" class="chart-canvas"></canvas>
-              </div>
+              </div> -->
+              <h2 class="text-danger">No Data Available</h2>
             </div>
           </div>
         </div>
@@ -478,7 +477,7 @@ switch($currTime){
             </div>
             <div class="table-responsive">
               <!-- Projects table -->
-              <table class="table align-items-center table-flush table-hover" id="dataTable">
+              <table class="table align-items-center table-flush table-hover" id="myTable">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Member ID</th>
@@ -493,7 +492,7 @@ switch($currTime){
                     <th scope="col">Delete Member</th>
                   </tr>
                 </thead>
-                <tbody id="myTable">
+                <tbody>
                   <tr>
                     <?php
        if($results['data']){
@@ -524,7 +523,7 @@ switch($currTime){
        }
 
        else{
-         echo '<p class="text-warning font-weight-bold">No registered users yet <i class="fa fa-exclamation-circle"></i></p>';
+         echo '<p class="text-warning font-weight-bold ml-3">No users have signed up yet <i class="fa fa-exclamation-circle"></i></p>';
        }
        ?>
                   </tr>
@@ -585,38 +584,35 @@ $(document).ready(function(){
   });
 });
 </script>
-  <sctipt src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-     <script src="https://cdn.datatables.net/colreorder/1.5.3/js/dataTables.colReorder.min.js"></script>
-     <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+  <sctipt src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap4.min.js"></script>
+     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+     <script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
+     <script src="https://cdn.datatables.net/autofill/2.3.7/js/dataTables.autoFill.min.js"></script>
+     <script src="https://cdn.datatables.net/autofill/2.3.7/js/autoFill.bootstrap4.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
-     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
-
+     <script src="https://cdn.datatables.net/responsive/2.2.8/js/dataTables.responsive.min.js"></script>
+     <!-- A virtual renderer for DataTables,
+     allowing the table to look like it scrolls for the full data set,
+      but actually only drawing the rows required for the current display,
+      for fast operation-->
+     <script src="https://cdn.datatables.net/scroller/2.0.4/js/dataTables.scroller.min.js"></script>
+     <!-- SearchBuilder provides the end user with an easy to use UI for
+     them to create their own complex custom search expression for a DataTable.
+     When searching through large sets of data for specific
+      data, this can be extremely useful.-->
+     <script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"></script>
      <script>
       $(function () {
        $('[data-toggle="tooltip"]').tooltip()
      });
-     // options to set for data tables
 
-     $(document).ready(function (){
-       $('#dataTable').DataTable({
-         scrollY: 400,
-         processing: true,
-         paging:true,
-         searching: true,
-         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-         dom: 'Bftlip',
-         buttons: [
-
-          'csv', 'excel', 'pdf', 'print'
-
-         ]
-
-       });
-     });
      $(function(){
        $('#restrictionPopup').modal({
          keyboard: false,
@@ -627,6 +623,21 @@ $(document).ready(function(){
 
      });
           </script>
+          <!-- DataTables script-->
+          <script>
+$(function (){
+  $('#dataTable').DataTable({
+    scrollY: 400,
+    processing: true,
+    paging:true,
+    searching: true,
+    responsive: true,
+    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
+
+  });
+});
+</script>
 </body>
 
 </html>
