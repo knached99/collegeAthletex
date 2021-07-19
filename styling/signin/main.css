@@ -1587,7 +1587,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   height: 100%;
   display: block;
   z-index: -1;
-background: url('https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1776&q=80');
+  background: url('https://images.unsplash.com/photo-1485400031595-976c74cf4e25?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGNvbGxlZ2UlMjBhdGhsZXRlc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
   background-size: cover;
   position: absolute;
   top: 0;

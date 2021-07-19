@@ -42,7 +42,7 @@
 <select class="form-control" name="ticket">
 <option><?php echo "{$user_data->ticket}"?> </option>
      <option value="Standard Seasonal Access - $150" <?php echo set_select('ticket', 'Standard Seasonal Access - $150');?>>Standard Seasonal Access - $150</option>
-       <option value="Pro Seasonal Access - $250" <?php echo set_selecT('ticket', 'Pro Seasonal Access - $250');?>>Pro Seasonal Access - $250</option>
+       <option value="Pro Seasonal Access - $250" <?php echo set_select('ticket', 'Pro Seasonal Access - $250');?>>Pro Seasonal Access - $250</option>
          <option value="Premium Seasonal Access - $350" <?php echo set_select('ticket', 'Premium Seasonal Access - $350');?>>Premium Seasonal Access - $350</option>
    </select>
 </select>

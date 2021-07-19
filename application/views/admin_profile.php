@@ -97,51 +97,16 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="dashboard.html">
+              <a class="nav-link" href="admin_dash">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="icons.html">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">Icons</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="map.html">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Google</span>
-              </a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="profile.html">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="tables.html">
-                <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">Tables</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">
-                <i class="ni ni-key-25 text-info"></i>
-                <span class="nav-link-text">Login</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register.html">
-                <i class="ni ni-circle-08 text-pink"></i>
-                <span class="nav-link-text">Register</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="upgrade.html">
-                <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Upgrade</span>
               </a>
             </li>
           </ul>
@@ -149,40 +114,24 @@
           <hr class="my-3">
           <!-- Heading -->
           <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
+            <span class="docs-normal">Dash Settings</span>
           </h6>
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
+
             <li class="nav-item">
-              <a class="nav-link" href="../docs/getting-started/overview.html" target="_blank">
-                <i class="ni ni-spaceship"></i>
-                <span class="nav-link-text">Getting started</span>
-              </a>
+              <button class="nav-link btn btn-warning">
+                <i class="fa fa-sun text-white"></i>
+                <span class="nav-link-text text-white">Toggle Light Mode</span>
+              </button>
+            </li><br>
+            <li>
+              <button class="nav-link btn btn-dark">
+                <i class="fa fa-moon text-white"></i>
+                <span class="nav-link-text text-white">Toggle Dark Mode</span>
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../docs/foundation/colors.html" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../docs/components/alerts.html" target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">Components</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../docs/plugins/charts.html" target="_blank">
-                <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Plugins</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active active-pro" href="upgrade.html">
-                <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Upgrade to PRO</span>
-              </a>
-            </li>
+
           </ul>
         </div>
       </div>
@@ -498,6 +447,63 @@
             </div>
           </div>
         </div>
+
+      <!-- Password Card-->
+      <div class="col-l-4 order-xl-2">
+        <div class="card card-profile">
+          <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGFzc3dvcmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Image placeholder" class="card-img-top rounded" style="width: 550px; height: 100px;">
+          <div class="card-body pt-0">
+            <div class="text-center">
+              <h5 class="h3">
+                Update my Password <i class="fa fa-lock fa-lg"></i>
+              </h5>
+              <form method="post">
+                <?php
+                if(isset($invalid_pwd)){
+                  echo $invalid_pwd;
+                }
+                else if(isset($update_failed)){
+                  echo $update_failed;
+                }
+                else if(isset($update_success)){
+                  echo $update_success;
+                }
+                ?>
+                <input name="username" value="<?php echo $_SESSION['username']?>" type="hidden">
+                  <div clas="form-row">
+                  <div class="col-md-6">
+                    <label class="form-label font-weight-bold">Current Password</label>
+                    <input class="form-control" type="password" name="pwd">
+                    <div class="text-danger"><?php echo form_error('pwd', '<i class="fa fa-exclamation-circle"></i>');?></div>
+                  </div>
+                </div>
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <label class="form-label font-weight-bold">New Password</label>
+                      <input class="form-control" type="password" name="new_pwd">
+                      <div class="text-danger"><?php echo form_error('new_pwd', '<i class="fa fa-exclamation-circle"></i>');?></div>
+
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <label class="form-label font-weight-bold">Retype New Password</label>
+                      <input class="form-control" type="password" name="confirm_pwd">
+                      <div class="text-danger"><?php echo form_error('confirm_pwd', '<i class="fa fa-exclamation-circle"></i>');?></div>
+
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col mt-3">
+                      <button class="btn btn-success font-weight-bold float-left" name="update_pwd">Update Password</button>
+                    </div>
+                  </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- P-->
         <div class="col-xl-8 order-xl-1">
           <div class="card">
             <div class="card-header">

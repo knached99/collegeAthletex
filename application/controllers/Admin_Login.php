@@ -95,7 +95,7 @@ class Admin_Login extends CI_Controller{
                 margin: 0 auto;
               }
             </style>
-            <title>User Deleted</title>
+            <title>Redirecting...</title>
           </head>
             <body>
               <div class="card">

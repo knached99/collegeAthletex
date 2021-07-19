@@ -61,23 +61,18 @@
                     <button type="submit" class="btn btn-primary font-weight-bold btn-md">Signin</button>
 
 			</form>
-			<?php if(isset($success)){
-echo $success;
-}
-else if(isset($err_msg)){
-echo $err_msg;
-}
-else if(isset($error)){
-echo $error;
-}
-else if(isset($unverified)){
-  echo $unverified;
-}
-else if(isset($not_exist)){
-  echo $not_exist;
-}
-?>
-			<a href="forgot_pass" class="forgot-pass">Forgot Password?</a><br>
+			<?php
+      if(isset($no_user)){
+        echo $no_user;
+      }
+      else if(isset($unverified)){
+        echo $unverified;
+      }
+      else if(isset($incorrect_pwd)){
+        echo $incorrect_pwd;
+      }
+      ?>
+			<a href="forget_pass" class="forgot-pass">Forgot Password?</a><br>
                 </div>
               </div>
             </div>

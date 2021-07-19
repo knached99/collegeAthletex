@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,13 +34,13 @@
             <a class="nav-link text-white font-weight-bold" href="#">My Subscription <i class="far fa-bookmark"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" href="#">My Settings <i class="fas fa-user-cog"></i></a>
+            <a class="nav-link text-white font-weight-bold" href="user_settings">Password Management <i class="fas fa-user-lock"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white font-weight-bold" href="contact_admin">Contact Administrator <i class="fas fa-pen-alt"></i></a>
           </li>
         </ul>
-        <a href="../Login/signin" style="text-decoration: none;"class="navbar-text nav-item text-white font-weight-bold">
+        <a href="signout" style="text-decoration: none;"class="navbar-text nav-item text-white font-weight-bold">
           Logout
           <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -52,7 +51,7 @@
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">My Dash</h1>
+          <h1 class="jumbotron-heading">Welcome back, <b class="text-primary"><?php echo $_SESSION['email'];?></b></h1>
           <?php if(isset($logout_fail)){
             echo $logout_fail;
           }?>
@@ -73,6 +72,10 @@
                   <h5 class="card-title font-weight-bold">My Profile</h5>
 
                   <p class="card-text font-weight-bold">
+                    First Name: <?php if(isset($this->session->fName)){ echo $this->session->fName;} else{ echo '<p class="font-weight-normal text-danger">Session data not available</p>';}?><br>
+                    Last Name: <?php if(isset($this->session->lName)){ echo $this->session->lName;} else{ echo '<p class="font-weight-normal text-danger">Session data not available</p>';}?><br>
+                    Email: <?php if(isset($this->session->email)){ echo $this->session->email;} else{ echo '<p class="font-weight-normal text-danger">Session data not available</p>';}?><br>
+                    Ticket Subscribtion: <?php if(isset($this->session->ticket)){ echo $this->session->ticket;} else{ echo '<p class="font-weight-normal text-danger">Session data not available</p>';}?><br>
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
@@ -107,6 +110,60 @@
       </div>
 
     </main>
+    <!-- Modal Form -->
+    <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfile" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary font-weight-bold" id="editProfile">Edit Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                First Name
+              </label>
+              <input type="text" name="fName" class="form-control" value="<?php if(!isset($this->session->fName)){ echo 'Error retrieving data';} else{ echo $this->session->fName;} ?>">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                Last Name
+              </label>
+              <input type="text" name="lName" class="form-control" value="<?php if(!isset($this->session->lName)){ echo 'Error retrieving data';} else{ echo $this->session->lName;}?>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                Email
+              </label>
+              <input type="text" name="email" class="form-control" value="<?php if(!isset($this->session->email)){ echo 'Error retrieving data';} else{ echo $this->session->email;}?>">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                Ticket
+              </label>
+              <select name="ticket" class="form-control">
+                 <option value="<?php if(!isset($this->session->ticket)){ echo 'Error retrieving data';} else{ echo $this->session->ticket;}?>"><?php if(!isset($this->session->ticket)){ echo 'Error retrieving data';} else{ echo $this->session->ticket;}?></option>
+                 <option value="Standard Seasonal Access - $150">Standard Seasonal Access - $150</option>
+                   <option value="Pro Seasonal Access - $250">Pro Seasonal Access - $250</option>
+                     <option value="Premium Seasonal Access - $350">Premium Seasonal Access - $350</option>
+               </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <footer class="text-muted">
       <div class="container">

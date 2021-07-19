@@ -97,7 +97,7 @@ switch($currTime){
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
+              <a class="nav-link active" href="admin_dash">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
@@ -500,7 +500,7 @@ switch($currTime){
            $status ='';
            switch($row->verify_status){
              case 0:
-             $status = '<p class="text-danger font-weight-bold">not yet verified <i class="fa fa-times-circle fa-lg"></i></p>';
+             $status = '<p class="text-danger font-weight-bold">not yet verified <i class="fa fa-exclamation-circle fa-lg"></i></p>';
              break;
              case 1:
              $status='<p class="text-success font-weight-bold">account verified <i class="fa fa-check-circle fa-lg"></i></p>';
@@ -516,8 +516,9 @@ switch($currTime){
            <td>'.$date_joined.'</td>
            <td>'.$status.'</td>
 
-           <td><a class="btn btn-outline-success" href="edit_user/'.$row->user_id.'"><i class="fa fa-pen fa-lg"></i></a></td>
-           <td><a class="btn btn-outline-danger" href="del_user/'.$row->user_id.'"><i class="fa fa-trash-alt fa-lg"></i></a></td>
+          <!-- <td><a class="btn btn-outline-success" href="edit_user/'.$row->user_id.'"><i class="fa fa-pen fa-lg"></i></a></td> -->
+          <td><a class="btn btn-primary font-weight-bold" data-toggle="modal" href="edit_profile/'.$row->user_id.'" data-target="#editProfile">Edit Profile</a></td>
+           <td><a class="btn btn-danger" href="del_user/'.$row->user_id.'"><i class="fa fa-trash-alt fa-lg"></i></a></td>
            </tr>';
          }
        }
@@ -559,6 +560,79 @@ switch($currTime){
           </div>
         </div>
       </footer>
+    </div>
+  </div>
+  <!-- Modal popup -->
+  <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledny="editProfile" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfile">
+            Edit <?php echo $row->fName ?>'s Profile
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria=hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST">
+            <?php if(isset($error)){
+              echo $error;
+            }
+            else if(isset($success)){
+              echo $success;
+            }
+            ?>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                First Name
+              </label>
+              <input type="text" class="form-control" name="fName" readonly value="<?php echo $row->fName;?>">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                Last Name
+              </label>
+              <input type="text" class="form-control" name="lName" readonly value="<?php echo $row->lName;?>">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                Email
+              </label>
+              <input type="text" class="form-control" name="email" value="<?php echo $row->email;?>">
+
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-bold">
+                Phone Number
+              </label>
+              <input type="text" class="form-control" name="fName"  value="<?php echo $row->phone_num;?>">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9">
+              <label class="form-label font-weight-bold">
+                Select Ticket
+              </label>
+              <select class="form-control">
+                <option value="Standard Seasonal Access - $150">Standard Seasonal Access - $150</option>
+                <option value="Pro Seasonal Access - $250">Pro Seasonal Access - $250</option>
+                <option value="Premium Seasonal Access - $350">Premium Seasonal Access - $350</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark font-weight-bold" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success font-weight-bold">Save</button>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Argon Scripts -->

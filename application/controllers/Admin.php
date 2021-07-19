@@ -16,11 +16,42 @@ class Admin extends CI_Controller{
     $data['num_rows']=$this->Insert->count_messages();
     $data['new_users']=$this->Insert->num_new_users();
     $data['users']=$this->Insert->get_new_users();
-		$this->load->view('admin', $data);
+    $this->load->view('admin', $data);
 		if(!isset($_SESSION['username'])){
 			redirect('http://localhost:8888/collegeAthletex/index.php/App/admin_login');
 		}
 	}
+  public function edit_user($user_id){
+    $this->load->model('Insert');
+    $results = $this->Insert->get_customer($user_id);
+    $this->data['user_data'] = $results[0];
+    $this->load->library('form_validation');
+    $this->load->helper('form');
+    $this->form_validation->set_rules('email', 'email', 'required|valid_email');
+    $this->form_validation->set_rules('phone_num', 'Phone Number', 'required|regex_match[/^(\({1}\d{3}\){1}|\d{3})(\s|-|.)\d{3}(\s|-|.)\d{4}$/]');
+    $this->form_validation->set_rules('ticket', 'required');
+    if($this->form_validation->run() == FALSE){
+      $this->load->view('edit_user', $this->data);
+    }
+    else{
+        $fName = $this->input->post('fName');
+        $lName = $this->input->post('lName');
+        $email = $this->input->post('email');
+        $phone_num = $this->input->post('phone_num');
+        $ticket = $this->input->post('ticket');
+
+      $update_user = $this->Insert->update_cust($fName, $lName, $email, $phone_num, $ticket);
+      if($update_user == FALSE){
+        $data['error']='<p class="alert alert-danger font-weight-bold">Unable to update user\'s data <i class="fa fa-exclamation-circle fa-g"></i></p>';
+        $this->load->view('edit_user', $this->data);
+      }
+      else{
+        $data['success']='<p class="alert alert-success font-weight-bold">Successfully updated user\'s profile <i class="fa fa-check-circle fa-lg"></i></p>';
+        $this->load->view('edit_user', $this->data);
+      }
+    }
+
+  }
   public function acknowledge($user_id){
     $this->load->model('Insert');
     $acknowledged = $this->Insert->acknowledge_user($user_id);
@@ -32,39 +63,39 @@ class Admin extends CI_Controller{
     }
   }
   public function admin_profile(){
-    $this->load->view('admin_profile');
+    $this->load->helper('form');
+    $this->load->library('form_validation');
+    $this->load->model('Insert');
+    $this->form_validation->set_rules('pwd', 'current password', 'required|trim');
+    $this->form_validation->set_rules('new_pwd','New Password','required|trim|regex_match[/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/]');
+    $this->form_validation->set_rules('confirm_pwd', 'Confirm Password', 'required|trim|matches[new_pwd]');
+    if($this->form_validation->run()==FALSE){
+      $this->load->view('admin_profile');
+    }
+    else{
+      $user = $this->input->post('username');
+      $pwd = $this->input->post('pwd');
+      $new_pwd = password_hash($this->input->post('new_pwd'), PASSWORD_DEFAULT);
+      $confirm_pwd = $this->input->post('confirm_pwd');
+      $results = $this->Insert->get_admin($user, $pwd);
+      if($results == FALSE){
+        $data['invalid_pwd'] = '<div class="alert alert-danger">You must enter the current password you are using. The one you entered is not it</div>';
+        $this->load->view('admin_profile', $data);
+      }
+      else{
+        $update_pwd = $this->Insert->update_pwd($new_pwd, $user);
+        if($update_pwd == TRUE){
+          $data['update_success']='<div class="alert alert-success">Password was successfully updated <i class="fa fa-check-circle"></i></div>';
+          $this->load->view('admin_profile', $data);
+        }
+        else{
+          $data['update_failed']='<div class="alert alert-warning">Something went wrong and we could not update your password <i class="fa fa-exclamation-circle"></i></div>';
+          $this->load->view('admin_profile', $data);
+
+        }
+      }
+    }
   }
-  public function edit_user($user_id){
-		$this->load->model('Insert');
-		$results = $this->Insert->get_customer($user_id);
-		$this->data['user_data'] = $results[0];
-		$this->load->library('form_validation');
-		$this->load->helper('form');
-		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
-		$this->form_validation->set_rules('phone_num', 'Phone Number', 'required|regex_match[/^(\({1}\d{3}\){1}|\d{3})(\s|-|.)\d{3}(\s|-|.)\d{4}$/]');
-		$this->form_validation->set_rules('ticket', 'required');
-		if($this->form_validation->run() == FALSE){
-			$this->load->view('edit_user', $this->data);
-		}
-		else{
-				$fName = $this->input->post('fName');
-				$lName = $this->input->post('lName');
-		  	$email = $this->input->post('email');
-				$phone_num = $this->input->post('phone_num');
-				$ticket = $this->input->post('ticket');
-
-			$update_user = $this->Insert->update_cust($fName, $lName, $email, $phone_num, $ticket);
-			if($update_user == FALSE){
-				$data['error']='<p class="alert alert-danger font-weight-bold">Unable to update user\'s data <i class="fa fa-exclamation-circle fa-g"></i></p>';
-				$this->load->view('edit_user', $this->data);
-			}
-			else{
-				$data['success']='<p class="alert alert-success font-weight-bold">Successfully updated user\'s profile <i class="fa fa-check-circle fa-lg"></i></p>';
-				$this->load->view('edit_user', $this->data);
-			}
-		}
-
-	}
   public function respond_to($message_id){
     $this->load->model('Insert');
     $results = $this->Insert->get_message($message_id);

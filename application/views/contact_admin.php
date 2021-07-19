@@ -19,7 +19,7 @@
           <a class="nav-link text-white font-weight-bold" href="#">My Subscription <i class="far fa-bookmark"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white font-weight-bold" href="#">My Settings <i class="fas fa-user-cog"></i></a>
+          <a class="nav-link text-white font-weight-bold" href="user_settings">My Settings <i class="fas fa-user-cog"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white font-weight-bold" href="contact_admin">Contact Administrator <i class="fas fa-pen-alt"></i></a>
@@ -56,7 +56,7 @@
     <div class="form-row">
   <div class="form-group col-md-6">
     <label class="form-label font-weight-bold">Email</label>
-    <input type="text" name="email" class="form-control" placeholder="email@email.com" value="<?php echo set_value('email');?>">
+    <input type="text" name="email" class="form-control" readonly placeholder="email@email.com" value="<?php echo $_SESSION['email'];?>">
     <small class="font-weight-bold text-danger"><?php echo form_error('email', '<i class="fa fa-exclamation-circle"></i>');?></small>
     <small class="text-success font-weight-bold"><?php if(isset($_POST['email']) && form_error('email') == FALSE) {echo ' <i class="fa fa-check-circle"></i>';}?></small>
 

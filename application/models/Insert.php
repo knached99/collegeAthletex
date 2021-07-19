@@ -42,6 +42,19 @@ class Insert extends CI_MODEL{
       return TRUE;
     }
   }
+  public function gen_token($auth_token, $email){
+    $status=0;
+    $this->db->set('auth', $auth_token);
+    $this->db->set('reset_status', $status);
+    $this->db->where('email', $email);
+    $update_auth = $this->db->update('users');
+    if(!$update_auth){
+      return FALSE;
+    }
+    else{
+      return TRUE;
+    }
+  }
   // Get password reset status
   public function get_admin_status($email){
     $this->db->select('*');
@@ -65,11 +78,11 @@ class Insert extends CI_MODEL{
     $this->db->where('email', $email);
     $this->db->where('confirm_code', $rand_code);
     $update_status = $this->db->update('users');
-    if(!$update_status){
-      return FALSE;
+    if($update_status){
+      return TRUE;
     }
     else{
-      return TRUE;
+      return FALSE;
     }
   }
   public function get_user_status($email, $rand_code){
@@ -86,6 +99,25 @@ class Insert extends CI_MODEL{
           return FALSE;
         }
         else if($row['verify_status']==1){
+          return TRUE;
+        }
+      }
+    }
+  }
+  public function get_reset_status($email, $auth_token){
+    $status=0;
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('email',$email);
+    $this->db->where('reset_status', $status);
+    $this->db->where('auth', $auth_token);
+    $results = $this->db->get();
+    if($results->num_rows() > 0){
+      foreach($results->result_array() as $row){
+        if($row['reset_status']==$status){
+          return FALSE;
+        }
+        else if($row['reset_status']==1){
           return TRUE;
         }
       }
@@ -111,6 +143,44 @@ class Insert extends CI_MODEL{
       $this->db->where('email', $email);
       $update = $this->db->update('admins');
       if($update){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    // Update password from password reset request
+    public function update_user_pwd($new_pwd, $email){
+      $status=1;
+      $this->db->set('pwd', $new_pwd);
+      $this->db->set('reset_status', $status);
+      $this->db->where('email', $email);
+      $update = $this->db->update('users');
+      if($update){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+    }
+    //Update password via user's settings
+    public function update_pass($new_pwd, $email){
+      $this->db->set('pwd', $new_pwd);
+      $this->db->where('email', $email);
+      $update = $this->db->update('users');
+      if($update){
+        return TRUE;
+      }
+      else{
+        return FALSE;
+      }
+
+    }
+    public function update_pwd($new_pwd, $user){
+      $this->db->set('pass', $new_pwd);
+      $this->db->where('username', $user);
+      $update_pwd = $this->db->update('admins');
+      if($update_pwd){
         return TRUE;
       }
       else{
@@ -198,11 +268,33 @@ class Insert extends CI_MODEL{
     $query = $this->db->get();
     if($query->num_rows() > 0){
       return TRUE;
+      return $query->result_array();
+
     }
     else{
       return FALSE;
     }
   }
+  public function check_status($email){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('email', $email);
+    $query = $this->db->get();
+    if($query->num_rows() > 0){
+      foreach($query->result_array() as $row){
+        $status = $row['verify_status'];
+        switch($status){
+          case '0':
+          return FALSE;
+        //  echo 'Account is not yet verified. Please check your account';
+          break;
+          case '1':
+          return TRUE;
+          break;
+      }
+    }
+  }
+}
   public function get_admin($user, $pwd){
     $this->db->select('*');
     $this->db->from('admins');
@@ -220,14 +312,33 @@ class Insert extends CI_MODEL{
         }
         else{
           return TRUE;
-          $results = $this->db->query($query)->result();
+      //    $results = $this->db->query($query)->result();
 
         }
       }
     }
+    else if($query->num_rows() <1){
+      echo 'Cannot get any data my sand nigga';
+    }
 
   }
-
+  public function check_pwd($curr_pwd, $email){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('email', $email);
+    $query = $this->db->get();
+    if($query->num_rows() > 0){
+      foreach($query->result_array() as $row){
+        $pass = $row['pwd'];
+      }
+      if(!password_verify($curr_pwd, $pass)){
+        return FALSE;
+      }
+      else {
+        return TRUE;
+      }
+    }
+  }
   public function get_admin_data($email){
     $this->db->select('*');
     $this->db->from('admins');
@@ -241,34 +352,32 @@ class Insert extends CI_MODEL{
       return FALSE;
     }
   }
-
+  // User Authentication function
   public function validate($email, $pass){
+    $this->load->model('Insert');
     $this->db->select('*');
     $this->db->from('users');
     $this->db->where('email', $email);
-    $query= $this->db->get();
-    $result =$query->result_array();
-    $count = count($result);
-    if($count > 0){
-      foreach($result as $row){
-        $upass = $row['pwd'];
-        $verify_status = $row['verify_status'];
-        if($verify_status ==0){
-          return 0;
-        }
-        else if($verify_status == 1){
-        if(!password_verify($pass, $upass)){
-          return FALSE;
-        }
-        else{
-          return TRUE;
-        }
+    $query = $this->db->get();
+    if($query->num_rows() < 1){
+    //  return NULL;
+      //echo 'Looks like you don\'t have an account with us!';
+    }
+    else{
+      foreach($query->result_array() as $row){
+        $pwd = $row['pwd'];
+          if(!password_verify($pass, $pwd)){
+            return FALSE;
+          //  echo 'Password entered is incorrect';
+          }
+          else{
+            return TRUE;
+            //echo 'You are now logged in, '.$email.'';
+            return $query->result();
+
+          }
+
       }
-    }
-      return $result->result();
-    }
-  else{
-      return 1;
     }
   }
 
