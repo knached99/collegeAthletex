@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |   
 */
-$config['base_url'] = 'http://localhost:8888/collegeAthletex/styling';
+$config['base_url'] = 'https://athletex.herokuapp.com/styling';
 //$config['base_url']='mysql://bb604dc8f170ba:88992bf8@us-cdbr-east-05.cleardb.net/heroku_0e8967bb54568b5?reconnect=true';
 
 /*
