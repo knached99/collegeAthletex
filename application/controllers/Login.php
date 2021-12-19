@@ -45,7 +45,7 @@ else{
 
     );
     $this->session->set_userdata($sess_data);
-    redirect('http://localhost:8888/collegeAthletex/index.php/UserDash/user_dash');
+    redirect('https://athletex.herokuapp.com/index.php/UserDash/user_dash');
   }
 
 }

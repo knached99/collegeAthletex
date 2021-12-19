@@ -241,7 +241,7 @@ class Admin_Login extends CI_Controller{
                                                 password has been generated for you. To reset your password, click the
                                                 following link and follow the instructions.
                                             </p>
-                                            <a href="http://localhost:8888/collegeAthletex/index.php/Admin_Login/reset_pass/'.$email.'/'.$reset_token.'"
+                                            <a href="https://athletex.herokuapp.com/index.php/Admin_Login/reset_pass/'.$email.'/'.$reset_token.'"
                                                 style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                                 Password</a>
                                         </td>

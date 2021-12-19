@@ -265,7 +265,7 @@ public function verify_code($email, $rand_code){
 
 //Email user with confirmation code
 private function __send_confirmation($fName, $email, $rand_code){
-  $url='http://localhost:8888/collegeAthletex/index.php/Signup/verify_code/'.$email.'/'.$rand_code.'';
+  $url='https://athletex.herokuapp.com/index.php/Signup/verify_code/'.$email.'/'.$rand_code.'';
   $body='
   <!DOCTYPE html>
 <html>

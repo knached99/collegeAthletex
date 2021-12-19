@@ -4,7 +4,7 @@ class Admin extends CI_Controller{
   public function __construct(){
     parent::__construct();
     if(!isset($_SESSION['username'])){
-      redirect('http://localhost:8888/collegeAthletex/index.php/Admin_Login/admin_signin');
+      redirect('https://athletex.herokuapp.com/Admin_Login/admin_signin');
 
     }
   }
@@ -18,7 +18,7 @@ class Admin extends CI_Controller{
     $data['users']=$this->Insert->get_new_users();
     $this->load->view('admin', $data);
 		if(!isset($_SESSION['username'])){
-			redirect('http://localhost:8888/collegeAthletex/index.php/App/admin_login');
+			redirect('https://athletex.herokuapp.com/index.php/App/admin_login');
 		}
 	}
   public function edit_user($user_id){
@@ -56,7 +56,7 @@ class Admin extends CI_Controller{
     $this->load->model('Insert');
     $acknowledged = $this->Insert->acknowledge_user($user_id);
     if($acknowledged == TRUE){
-      redirect('http://localhost:8888/collegeAthletex/index.php/Admin/admin_dash');
+      redirect('https://athletex.herokuapp.com/index.php/Admin/admin_dash');
     }
     else{
       echo 'Could not acknowledge user';
@@ -133,7 +133,7 @@ class Admin extends CI_Controller{
 		$this->load->model('Insert');
 	$del_user=	$this->Insert->delete_user($user_id);
 	if($del_user == TRUE){
-		redirect('http://localhost:8888/collegeAthletex/index.php/Admin/admin_dash');
+		redirect('https://athletex.herokuapp.com/index.php/Admin/admin_dash');
 	}
 	else{
 		echo 'Unable to delete user\'s account';

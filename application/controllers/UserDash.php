@@ -4,7 +4,7 @@ class UserDash extends CI_Controller{
  public function __construct(){
     parent::__construct();
     if(!isset($_SESSION['email'])){
-      redirect('http://localhost:8888/collegeAthletex/index.php/Login/signin');
+      redirect('https://athletex.herokuapp.com/index.phpLogin/signin');
     }
   }
 
@@ -15,7 +15,7 @@ class UserDash extends CI_Controller{
   	 }
      public function signout(){
         if(session_destroy()){
-          redirect('http://localhost:8888/collegeAthletex/index.php/Login/signin');
+          redirect('https://athletex.herokuapp.com/index.php/Login/signin');
           //$this->load->view('logout_redirect');
         }
        else{

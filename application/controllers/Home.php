@@ -63,7 +63,7 @@ class Home extends CI_Controller {
 	}
 	public function customers(){
 		if(!isset($_SESSION['username'])){
-			redirect('http://localhost:8888/collegeAthletex/index.php/App/admin_login');
+			redirect('https://athletex.herokuapp.com/index.php/App/admin_login');
 		}
 		$this->load->model('Insert');
 		$this->load->library('form_validation');
