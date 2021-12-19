@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'athletex',
+	'hostname' => 'us-cdbr-east-05.cleardb.net',
+	'username' => 'bb604dc8f170ba',
+	'password' => '88992bf8',
+	'database' => 'heroku_0e8967bb54568b5',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
