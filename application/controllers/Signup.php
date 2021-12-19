@@ -441,7 +441,7 @@ private function __send_confirmation($fName, $email, $rand_code){
   $config['protocol']='smtp';
   $config['smtp_host']='smtp.gmail.com';
   $config['smtp_user']='nhicvoting@gmail.com';
-  $config['smtp_pass']='ClubPenguin99!';
+  $config['smtp_pass']='PenguinClub2021!';
   $config['smtp_port']='465';
   $config['newline']="\r\n";
   $config['smtp_timeout']='5';
