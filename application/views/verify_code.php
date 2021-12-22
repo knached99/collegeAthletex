@@ -1,78 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-  	<title>Verify your account</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Signin to your account</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/feather/feather.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="<?php echo base_url();?>skydash/images/favicon.png" />
+</head>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+              <img src="https://cdn.dribbble.com/users/4051369/screenshots/12909247/19_4x.jpg">
+              </div>
+			  <h4>Enter the validation code to continue</h4>
+			  <?php
+      if(isset($wrong_code)){
+        echo $wrong_code;
+      }
+     
+      ?>
+              <form class="pt-3" method="post">
+                <div class="form-group">
+				  <input type="text" class="form-control form-control-lg" name="code" placeholder="Enter the code here">
+				  <small class="text-danger font-weight-bold"><?php echo form_error('code', '<i class="fa fa-exclamation-circle"></i>');?></small>
 
-	<link rel="stylesheet" href="<?php echo base_url();?>/signup/css/style.css">
+                </div>
+             
+                <div class="mt-3">
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">VALIDATE</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="<?php echo base_url();?>skydashvendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="<?php echo base_url();?>skydashjs/off-canvas.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/hoverable-collapse.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/template.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/settings.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/todolist.js"></script>
+  <!-- endinject -->
+</body>
 
-	</head>
-	<body>
-	<section class="ftco-section bg-white">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section text-secondary" style="font-weight: 900;  text-align: center;">Verify Your Account <img src="https://cdn.dribbble.com/users/4051369/screenshots/12909247/19_4x.jpg" style="height: 100px;"></h2>
-       
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="wrap d-md-flex">
-            <!-- https://uconn-today-universityofconn.netdna-ssl.com/wp-content/uploads/2017/01/Football160901b453-1.jpg-->
-						<div class="text-wrap p-4 p-lg-5 d-flex img" style="background-image: url('https://images.wsj.net/im-239200?width=1280&size=1');">
-							<div class="text w-100">
-								<h2 class="mb-4">Welcome to Athletex</h2>
-								<p style="color: #fff; font-weight: bolder; ">Signup to recieve exclusive benefits including member only discounts, rewards and perks, and meeting up with world renowned athletes!
-                  <br> When you signup, you can also manage ticket purchases or reservations to game days
-                </p>
-							</div>
-			      </div>
-						<div class="login-wrap p-4 p-md-5">
-			      	<div class="row justify-content-center py-md-5">
-			      		<div class="col-lg-9">
-
-									<form method="POST" class="signup-form">
-										<div class="row">
-												<div class="form-group">
-							      			<label class="label font-weight-bold" for="code">Verification Code</label>
-							      			<input type="text" name="code" class="form-control">
-											  <small class="text-danger"><?php echo form_error('code');?></small>
-											</div>
-										
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-						            	<button type="submit" class="btn btn-primary btn-md">verify my account</button>
-										<?php if(isset($invalid_code)){
-            echo $invalid_code;
-          }
-        
-          ?>
-						            </div>
-											</div>
-										</div>
-
-				          </form>
-				  
-			      		</div>
-			      	</div>
-		        </div>
-		      </div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-
-	</body>
 </html>
