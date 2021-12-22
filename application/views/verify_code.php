@@ -1,33 +1,78 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Verify Account</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Verify your account</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-</head>
-<body class="text-center font-weight-bold bg-light">
-  <div class="container shadow-lg p-3 mb-5 bg-white rounded">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-    <div class="row">
-      <div class="col">
-        <div class="jumbotron bg-white">
-<h2 class="display-4 text-success">Your account has already been verified <i class="fa fa-check-circle"></i></h2>
-<hr class="my-4">
-<p>You can now go ahead and login</p>
-<p class="lead">
-  <a class="btn btn-primary btn-lg font-weight-bold" href="../../../Login/signin" role="button">Login</a>
-</p>
-</div>
-    </div>
-  </div>
-</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="<?php echo base_url();?>/signup/css/style.css">
+
+	</head>
+	<body>
+	<section class="ftco-section bg-white">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section text-secondary" style="font-weight: 900;  text-align: center;">Verify Your Account <img src="https://cdn.dribbble.com/users/4051369/screenshots/12909247/19_4x.jpg" style="height: 100px;"></h2>
+       
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="wrap d-md-flex">
+            <!-- https://uconn-today-universityofconn.netdna-ssl.com/wp-content/uploads/2017/01/Football160901b453-1.jpg-->
+						<div class="text-wrap p-4 p-lg-5 d-flex img" style="background-image: url('https://images.wsj.net/im-239200?width=1280&size=1');">
+							<div class="text w-100">
+								<h2 class="mb-4">Welcome to Athletex</h2>
+								<p style="color: #fff; font-weight: bolder; ">Signup to recieve exclusive benefits including member only discounts, rewards and perks, and meeting up with world renowned athletes!
+                  <br> When you signup, you can also manage ticket purchases or reservations to game days
+                </p>
+							</div>
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="row justify-content-center py-md-5">
+			      		<div class="col-lg-9">
+
+									<form method="POST" class="signup-form">
+										<div class="row">
+												<div class="form-group">
+							      			<label class="label font-weight-bold" for="code">Verification Code</label>
+							      			<input type="text" name="code" class="form-control">
+											  <small class="text-danger"><?php echo form_error('code');?></small>
+											</div>
+										
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+						            	<button type="submit" class="btn btn-primary btn-md">verify my account</button>
+										<?php if(isset($invalid_code)){
+            echo $invalid_code;
+          }
+        
+          ?>
+						            </div>
+											</div>
+										</div>
+
+				          </form>
+				  
+			      		</div>
+			      	</div>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+	</body>
 </html>

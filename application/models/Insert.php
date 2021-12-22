@@ -17,6 +17,25 @@ class Insert extends CI_MODEL{
       return TRUE;
     }
   }
+  public function verify_code($email, $code){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('email', $email);
+    $results = $this->db->get()->result_array();
+    foreach($results as $row){
+      $confirm_code = $row['confirm_code'];
+    }
+    if($code == $confirm_code){
+      $status = 1;
+      $this->db->set('verify_status', $status);
+      $this->db->where('email', $email);
+      $update = $this->db->update('users');
+      return TRUE;
+    }
+    else{
+      return FALSE;
+    }
+  }
   public function send_code($rand_code, $email){
     $this->db->set('confirm_code', $rand_code);
     $this->db->where('email', $email);
@@ -53,6 +72,22 @@ class Insert extends CI_MODEL{
     }
     else{
       return TRUE;
+    }
+  }
+
+  public function validate_code($email, $code){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('email', $email);
+    $results = $this->db->get()->result_array();
+    foreach($results as $row){
+      $correct_code = $row['auth'];
+    }
+    if($code == $correct_code){
+      return TRUE;
+    }
+    else{
+      return FALSE;
     }
   }
   // Get password reset status
@@ -104,24 +139,17 @@ class Insert extends CI_MODEL{
       }
     }
   }
-  public function get_reset_status($email, $auth_token){
+  public function get_reset_status($email){
     $status=0;
     $this->db->select('*');
     $this->db->from('users');
     $this->db->where('email',$email);
-    $this->db->where('reset_status', $status);
-    $this->db->where('auth', $auth_token);
-    $results = $this->db->get();
-    if($results->num_rows() > 0){
-      foreach($results->result_array() as $row){
-        if($row['reset_status']==$status){
-          return FALSE;
-        }
-        else if($row['reset_status']==1){
-          return TRUE;
-        }
-      }
+    $results = $this->db->get()->result_array();
+    foreach($results as $row){
+      $reset_status = $row['reset_status'];
     }
+    return $reset_status;
+   
   }
     public function acknowledge_user($user_id){
       $status=1;

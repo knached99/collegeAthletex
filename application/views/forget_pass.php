@@ -1,64 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <style>
-  body {
-    background-position: center;
-    background-image: url('https://images.unsplash.com/photo-1564857170582-80855988d55e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80');
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #505050;
-    font-family: "Rubik", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.5;
-    text-transform: none
-}
-
-.forgot {
-    background-color: #fff;
-    padding: 12px;
-    border: 1px solid #dfdfdf
-}
-
-.padding-bottom-3x {
-    padding-bottom: 72px !important
-}
-
-.card-footer {
-    background-color: #fff
-}
-
-.btn {
-    font-size: 13px
-}
-
-.form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #76b7e9;
-    outline: 0;
-    box-shadow: 0 0 0 0px #28a745
-}
-  </style>
-  <title>Forgot Password</title>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Forgot Your Password?</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/feather/feather.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="<?php echo base_url();?>skydash/images/favicon.png" />
 </head>
-<div class="container padding-bottom-3x mb-2 mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
-            <div class="forgot shadow-lg p-3 mb-5 bg-white rounded text-dark">
-                <h2>Forgot your password?</h2>
-                <p>Change your password in three easy steps. This will help you to secure your password!</p>
-                <ol class="list-unstyled">
-                    <li><span class="text-danger text-medium">1. </span>Enter your email address below.</li>
-                    <li><span class="text-danger text-medium">2. </span>Our system will generate a password reset link</li>
-                    <li><span class="text-danger text-medium">3. </span>Click on the link to reset your password</li>
-                </ol>
-            </div>
-            <form class="card mt-4" method="post">
-              <?php
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+              <img src="https://cdn.dribbble.com/users/4051369/screenshots/12909247/19_4x.jpg">
+              </div>
+        <h4>Forgot your password?</h4>
+        <h6 class="font-weight-light">No worries, enter your email to reset it</h6>
+
+        <?php
               if(isset($invalid_email)){
                 echo $invalid_email;
               }
@@ -69,17 +43,40 @@
                 echo $email_sent;
               }
               ?>
-                <div class="card-body">
-                    <div class="form-group col-md-6"> <label class="form-label font-weight-bold">Enter your email address <i class="fa fa-envelope text-secondary fa-lg"></i></label> <input class="form-control" type="text" name="email">
-                      <small class="text-danger font-weight-bold"><?php echo form_error('email', '<i class="fa fa-exclamation-circle"></i>');?></small>
-                      <small class="form-text text-muted">Enter your email address so we can email a link to that address.</small>
-                    </div>
+              <form class="pt-3" method="post">
+                <div class="form-group">
+				  <input type="text" class="form-control form-control-lg" name="email" placeholder="Enter your email">
+				  <small class="text-danger font-weight-bold"><?php echo form_error('email', '<i class="fa fa-exclamation-circle"></i>');?></small>
+
                 </div>
-                <div class="card-footer"> <button class="btn btn-primary" type="submit">Get New Password</button> <a class="btn btn-danger" href="signin" >Back to Login</a> </div>
-            </form>
+         
+                <div class="mt-3">
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SEND RESET REQUEST</button>
+                </div>
+       
+      
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
+      <!-- content-wrapper ends -->
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="<?php echo base_url();?>skydashvendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="<?php echo base_url();?>skydashjs/off-canvas.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/hoverable-collapse.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/template.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/settings.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/todolist.js"></script>
+  <!-- endinject -->
+</body>
+
+</html>

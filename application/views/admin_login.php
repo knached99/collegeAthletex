@@ -19,14 +19,14 @@
   <meta name="author" content="Creative Tim">
   <title>Admin Login</title>
   <!-- Favicon -->
-  <link rel="icon" href="<?php echo base_url();?>adminDash/assets/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="<?php echo base_url();?>styling/adminDash/assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
-  <link rel="stylesheet" href="<?php echo base_url();?>adminDash/assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="<?php echo base_url();?>adminDash/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="<?php echo base_url();?>styling/adminDash/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="<?php echo base_url();?>styling/adminDash/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="<?php echo base_url();?>adminDash/assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="<?php echo base_url();?>styling/adminDash/assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body class="bg-default">
@@ -202,13 +202,13 @@
   </footer>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="<?php echo base_url();?>adminDash/assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>adminDash/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url();?>adminDash/assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="<?php echo base_url();?>adminDash/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="<?php echo base_url();?>adminDash/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="<?php echo base_url();?>styling/adminDash/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="<?php echo base_url();?>styling/adminDash/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url();?>styling/adminDash/assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="<?php echo base_url();?>styling/adminDash/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="<?php echo base_url();?>styling/adminDash/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
-  <script src="<?php echo base_url();?>adminDash/assets/js/argon.js?v=1.2.0"></script>
+  <script src="<?php echo base_url();?>styling/adminDash/assets/js/argon.js?v=1.2.0"></script>
 </body>
 
 </html>

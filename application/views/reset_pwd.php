@@ -1,42 +1,77 @@
-<!DOCTYPE HTML>
-<html lang="en" dir="ltr">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body class="bg-dark">
-  <?php
-  if(isset($auth) && isset($email) && $reset_status ==FALSE){
-    echo '
-    <div class="container bg-white shadow-lg p-3 mb-5 mt-5 bg-white rounded" style="width: 40%;">
-    <form method="POST">
-  <div class="form-group col-md-6">
-    <label class="form-label font-weight-bold">Create a new password</label>
-    <input type="password" class="form-control" name="pwd" placeholder="Create new Password">
-    <small class="text-danger font-weight-bold">'.form_error('pwd').'</small>
-  </div>
-  <div class="form-group col-md-6">
-    <label class="form-label font-weight-bold">Retype Password</label>
-    <input type="password" class="form-control" name="confirm_pass" placeholder="Retype that password">
-    <small class="text-danger font-weight-bold">'.form_error('confirm_pass').'</small>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Reset your password</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/feather/feather.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="<?php echo base_url();?>skydash/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="<?php echo base_url();?>skydash/images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+              <img src="https://cdn.dribbble.com/users/4051369/screenshots/12909247/19_4x.jpg">
+              </div>
+			  <h4>Reset your password</h4>
+			  <?php
+      if(isset($reset_error)){
+        echo $reset_error;
+      }
+      ?>
+              <form class="pt-3" method="post">
+                <div class="form-group">
+				  <input type="password" class="form-control form-control-lg" name="pwd" placeholder="Enter your new password">
+				  <small class="text-danger font-weight-bold"><?php echo form_error('pwd', '<i class="fa fa-exclamation-circle"></i>');?></small>
+
+                </div>
+                <div class="form-group">
+				  <input type="password" class="form-control form-control-lg"  name="confirm_pass" placeholder="Confirm your password">
+				  <small class="text-danger font-weight-bold"><?php echo form_error('confirm_pass', '<i class="fa fa-exclamation-circle"></i>');?></small>
+
+                </div>
+                <div class="mt-3">
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">RESET PASSWORD</button>
+                </div>
+          
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
   </div>
-  <div class="form-group">
-  <button type="submit" class="btn btn-success">Reset Password</button>
-  </div>
-</form>
-</div>
-    ';
-  }
-  if(isset($auth) && isset($email) && $reset_status==TRUE){
-    echo '<div class="container bg-white shadow-lg p-3 mb-5 mt-5 bg-white rounded">
-    <p class="font-weight-bold text-center">Your password has already been reset.
-  <br>If you have already forgotton your new password, <a href="../../forgot_pass" class="font-weight-bold text-primary">click here</a> to submit a new password reset request</p>
-    </div>';
-  }
-  ?>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="<?php echo base_url();?>skydashvendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="<?php echo base_url();?>skydashjs/off-canvas.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/hoverable-collapse.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/template.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/settings.js"></script>
+  <script src="<?php echo base_url();?>skydash/js/todolist.js"></script>
+  <!-- endinject -->
 </body>
+
 </html>

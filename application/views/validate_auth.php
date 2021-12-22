@@ -29,39 +29,22 @@
               <div class="brand-logo">
               <img src="https://cdn.dribbble.com/users/4051369/screenshots/12909247/19_4x.jpg">
               </div>
-			  <h4>Signin to continue</h4>
+			  <h4>Enter the validation code to continue</h4>
 			  <?php
-      if(isset($no_user)){
-        echo $no_user;
+      if(isset($wrong_code)){
+        echo $wrong_code;
       }
-      else if(isset($unverified)){
-        echo $unverified;
-      }
-      else if(isset($incorrect_pwd)){
-        echo $incorrect_pwd;
-      }
+     
       ?>
               <form class="pt-3" method="post">
                 <div class="form-group">
-				  <input type="text" class="form-control form-control-lg" name="email" placeholder="Enter your email">
-				  <small class="text-danger font-weight-bold"><?php echo form_error('email', '<i class="fa fa-exclamation-circle"></i>');?></small>
+				  <input type="text" class="form-control form-control-lg" name="code" placeholder="Enter the code here">
+				  <small class="text-danger font-weight-bold"><?php echo form_error('code', '<i class="fa fa-exclamation-circle"></i>');?></small>
 
                 </div>
-                <div class="form-group">
-				  <input type="password" class="form-control form-control-lg"  name="pwd" placeholder="Enter your password">
-				  <small class="text-danger font-weight-bold"><?php echo form_error('pwd', '<i class="fa fa-exclamation-circle"></i>');?></small>
-
-                </div>
+             
                 <div class="mt-3">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
-                </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-              
-                  <a href="forget_pass" class="auth-link text-black">Forgot password?</a>
-                </div>
-            
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="../Signup/cust_signup" class="text-primary">Create one here</a>
+                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">VALIDATE</button>
                 </div>
               </form>
             </div>
